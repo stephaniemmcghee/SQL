@@ -1,0 +1,24 @@
+--Create a clothing store database
+
+
+CREATE TABLE Clothing_Store (id INTEGER PRIMARY KEY, Item TEXT, Size TEXT, Season TEXT, Price INTEGER); 
+
+INSERT INTO Clothing_Store VALUES (1, "Jeans", "L", "Fall", 30), 
+(2, "Shorts", "L", "Summer", 20),
+(3, "Shorts", "M", "Summer", 20),
+(4, "Dresses", "S", "Summer", 20),
+(5, "Dresses", "M", "Summer", 20),
+(6, "Jackets", "M", "Fall", 25), 
+(7, "Coats", "L", "Winter", 40), 
+(8, "Kids_Coats", "S", "Winter", 25), 
+(9, "Leggings", "M", "Fall", 15), 
+(10, "Leggings", "L", "Season", 15),
+(11, "Scarves", "One size", "Winter", 7), 
+(12, "Ear Muffs", "Kids", "Winter", 10), 
+(13, "Hats", "L", "Winter", 15), 
+(14, "Gloves", "L", "Winter", 10),
+(15, "Swimsuits", "M", "Summer", 25);
+
+--display the database ordered by price with at least one other statistic 
+
+SELECT id, item, price FROM Clothing_Store ORDER BY Price; 
