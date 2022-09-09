@@ -1,0 +1,53 @@
+Database of Harry Potter Characters: 
+
+CREATE table Harry_Potter_Characters (id INTEGER PRIMARY KEY , name TEXT, house TEXT, parentage TEXT, gender TEXT, patronous TEXT, best_skill TEXT, pet TEXT, siblings INTEGER, Age_Battle_of_Hogwarts INTEGER, Side TEXT); 
+
+INSERT INTO Harry_Potter_Characters VALUES (1, "Harry_Potter", "Gryffindor", "Half_blood", "M", "Stag", "Defense_Against_Dark_Arts", "Snow_Owl", 0, 17, "Order"),
+(2, "Hermoine_Granger", "Gryffindor", "Muggle_born", "F", "Otter", "Intelligence", "Cat", 0, 17, "Order"),
+(3, "Ron Weasley", "Gryffindor", "Pure_blood", "M", "Jack_Russell_Terrier", "Chess", "Rat", 6, 17, "Order"),
+(4, "Draco_Malfoy", "Slytherin", "Pure_blood", "M", "Dragon", "Occlumency", "Owl", 0, 17, "Death_Eaters"), 
+(5, "Luna_Lovegood", "Ravenclaw", "Pure_blood", "F", "Hare", "ability_to_read_people", "none", 0, 16, "Order"),
+(6, "Neville_Longbottom", "Gryffindor", "Pure_blood", "M", "No_form", "bravery", "toad", 3, 17, "Order"), 
+(7, "Ginny_Weasley","Gryffindor", "Pure_blood", "F", "Horse", "Quidditch", "Pygmy_puff", 6, 16, "Order"),
+(8, "Colin_Creevy", "Gryffindor", "Muggle_born", "M","not_defined", "photography", "none", 1, 16, "Order"), 
+(9, "Bellatrix_Lestrange", "Slytherin", "Pure_blood", "F","none", "Dark_arts", "none", 2, 47, "Death_Eaters"), 
+(10, "Voldemort", "Slytherin", "Half_blood", "M", "none", "Legilimency", "snake", 0, 71, "Death_Eaters"),
+(11, "Lucius_Malfoy", "Slytherin", "Pure_blood", "M", "albino_peacock", "unforgivable_curses", "Albino_peacock", 2, 44, "Death_Eaters"), 
+(12, "Peter_Pettigrew", "Gryffindor", "Pure_blood", "M", "none", "animagus", "none", 1, 71, "Death_Eaters"), 
+(13, "Lavender_Brown", "Gryffndor", "Pure_blood", "F", "No_form", "Divination", "rabbit", "none", 17, "Order"), 
+(14, "Gregory_Goyle","Slytherin", "Pure_blood", "M", "not_defined", "Dark_arts", "none", 0, 17, "Death_Eaters"), 
+(15, "Hagrid", "Gryffindor", "Half_blood", "M", "none", "care_of_magical_creatures", "hound", 1, 68, "Order"), 
+(16, "Dolores_Umbridge", "Slytherin", "Half_blood", "F", "persian_cat", "non_verbal_skills", "none", 1, 36, "Death_eaters"), 
+(17, "Vincent_Crabbe", "Slytherin", "Pure_blood", "M", "not_defined", "Dark_arts","none", 0, 17, "Death_Eaters"),
+(18, "Minerva_McGonagall", "Gryffindor", "Half_blood", "F", "cat", "transfiguration", "cat", 2, 63, "Order"), 
+(19, "Severus_Snape", "Slytherin", "Half_blood", "M", "doe", "Occlumency", "none", 0, 38, "Order"), 
+(20, "Remus_Lupin", "Gryffindor", "Half_blood", "M", "wolf", "Defense_Against_Dark_Arts", "none", 0, 38, "Order");
+
+How many characters were of age, under age and over age during the Battle of Hogwarts?
+
+SELECT name, Age_Battle_of_Hogwarts, house,
+    CASE
+        WHEN Age_Battle_of_Hogwarts < 17 THEN "under_age"
+        ELSE "Of_age"
+        END as "Legal"
+FROM Harry_Potter_Characters
+GROUP BY Legal;
+
+How many Pure Bloods were on the Order side and who were they?
+
+SELECT name, parentage, side FROM Harry_Potter_Characters WHERE parentage = "Pure_blood" AND Side = "Order"; 
+SELECT COUNT (*) FROM Harry_Potter_Characters WHERE parentage = "Pure_blood" AND Side = "Order";
+
+What was the average age of the characters during the Battle of Hogwarts? 33
+
+SELECT AVG(Age_Battle_of_Hogwarts) AS avg_age FROM Harry_Potter_Characters;
+
+To see entire chart:
+
+SELECT * FROM Harry_Potter_Characters;
+
+
+
+
+
+
