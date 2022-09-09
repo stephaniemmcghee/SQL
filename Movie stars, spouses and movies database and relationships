@@ -1,0 +1,60 @@
+Database of Movie stars and spouse ids: 
+
+CREATE TABLE stars (id INTEGER PRIMARY KEY,full_name TEXT, age INTEGER,spouse_id INTEGER); 
+    
+INSERT INTO stars VALUES (1,"Jennifer_Lopez", 53, 12), 
+(2, "Blake_Lively", 35, 8), 
+(3, "Will_Smith", 53, 15),
+(4, "Dax_Shepard", 47,7), 
+(5, "Freddie_Prinze", 46, 11),
+(6, "Judd_Apatow", 54, 16), 
+(7, "Kristen_Bell", 42, 4), 
+(8, "Ryan_Reynolds", 45, 2), 
+(9, "Melissa_McCarthy", 52, 13), 
+(10, "John Krasinki", 42, 14), 
+(11, "Sarah_Michelle_Gellar", 45, 5),
+(12, "Ben_Affleck", 50, 1), 
+(13, "Ben_Falcone", 49, 9), 
+(14, "Emily_Blunt", 39, 10),
+(15, "Jada_Pinkett_Smith", 50, 3), 
+(16, "Leslie_Mann", 50, 6); 
+
+Name of movie star next to their spouse sorting by id:  
+
+SELECT a.id, a.full_name,b.full_name FROM stars a
+    JOIN stars b
+    ON a.id=b.spouse_id
+    ORDER BY a.id;
+    
+Actor ids and their movies: 
+  
+CREATE TABLE movies (actor_id INTEGER, title TEXT); 
+INSERT INTO movies VALUES (1, "Jersey_Girl"), 
+(2, "Age_of_Adeline"), 
+(3, "I_am_Legend"), 
+(4, "The_Boss"), 
+(5, "Last_Summer"),
+(6, "This_is_40"), 
+(7, "Frozen"), 
+(8, "Deadpool"), 
+(9, "Bridesmaids"), 
+(10, "A_Quiet_Place"), 
+(11, "Last_Summer"), 
+(12, "Jersey_Girl"), 
+(13, "Bridesmaids"), 
+(14, "A_Quiet_Place"), 
+(15, "Set_it_Off"), 
+(16, "This_is_40");
+
+Name of Actor with their movie and id 
+
+SELECT a.id, a.full_name, c.title FROM stars a
+    JOIN movies c
+    ON a.id=c.actor_id;
+    
+To see movie stars with their movie titles organized by title 
+  
+ SELECT c.title, a.full_name FROM stars a
+    JOIN movies c
+    ON a.id=c.actor_id
+    ORDER BY title; 
