@@ -1,0 +1,47 @@
+In this project I received a database that contained multiple tables for monthly sales and another for the customers.
+
+A small view of all the things listed in the JanSales table:
+SELECT * FROM BIT_DB.JanSales limit 20
+
+How many orders were placed in January?
+SELECT count(orderid) from bit_db.jansales;
+
+How many of those orders were for an iPhone?
+select count(product) from BIT_DB.JanSales 
+    WHERE product="iPhone";
+    
+Limited view of FebSales table: 
+SELECT * from BIT_DB.FebSales limit 5
+
+Limited view of customers table:
+SELECT * from BIT_DB.customers limit 5
+
+Select the customer account numbers for all the orders that were placed in February.
+select customers.acctnum from BIT_DB.customers
+    inner join BIT_DB.FebSales 
+    on customers.order_id=FebSales.orderID; 
+    
+Which product was the cheapest one sold in January, and what was the price?  
+select distinct min(price), Product FROM BIT_DB.Jansales
+    group by price, product 
+    order by price asc
+    limit 1;
+    
+What is the total revenue for each product sold in January? 
+select sum(quantity)*price as revenue, product from BIT_DB.JanSales
+     group by product; 
+     
+Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and 
+what was the total revenue?
+select Product, SUM(quantity), location, sum(quantity)*price as revenue
+    from BIT_DB.FebSales
+    where location="548 Lincoln St, Seattle, WA 98101"
+    group by product; 
+    
+select count(customers.acctnum), avg(quantity*price) FROM BIT_DB.FebSales as Feb
+  LEFT JOIN BIT_DB.customers AS customers
+  ON FEB.orderid=customers.order_id
+  WHERE Feb.Quantity>2; 
+
+
+
