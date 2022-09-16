@@ -1,0 +1,43 @@
+# I downloaded a database from Chinook containing 11 tables regarding music data and sales.
+
+# 1. First I created a table linking the artist to their album.
+select artists.Name, albums.Title 
+FROM  chinook.albums as albums
+join chinook.artists as artists
+on albums.ArtistId = artists.ArtistId; 
+
+# 2. How many customers are from the USA?
+select count(CustomerId) from chinook.customers 
+where country = "USA"; 
+
+# 3. Show customers including their name, customer id and country who are not in the USA. 
+select c.CustomerId, c.FirstName, c.LastName, c.Country 
+from chinook.customers as c  
+where country !="USA"; 
+
+# 4. How many sales were there in 2013? 
+select count(InvoiceId) from chinook.invoices 
+where "InvoiceDate" like '%2013%'; 
+
+# 5. What was the total of all sales in 2013? 
+select sum(Total) from chinook.invoices 
+where "InvoiceDate" like '%2013%'; 
+
+# 6. List the names and emails of all managers and sales support agents. 
+select e.Title, e.LastName, e.FirstName, e.Email 
+from chinook.employees as e 
+where 
+    e.Title like '%Manager%'; 
+    
+
+# 7. Total sales made by each agent?
+select e.LastName, e.FirstName, Round(SUM(i.Total), 2) 
+from chinook.employees as e
+join chinook.customers as c
+on c.SupportRepId = e.EmployeeId
+join chinook.invoices as i
+on i.CustomerId=c.CustomerID
+WHERE e.Title = 'Sales Support Agent'
+GROUP BY e.FirstName;
+; 
+
